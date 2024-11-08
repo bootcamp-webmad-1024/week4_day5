@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 200px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Montañas rusas wowowowow</h1>
+    <hr>
+    <ul id="coastersList"></ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+
+        axios
+            .get('https://multiapi-app.fly.dev/coasters/coastersSelection')
+            .then(response => {
+
+                console.log('OBJETO DE AXIOS', response)
+
+                let code = ''
+                response.data.forEach(elm => {
+                    code += `<li>
+                        <h2>${elm.title} </h2>
+                        <p>${elm.description}</p>
+                        </li>`
+                })
+                document.querySelector('#coastersList').innerHTML = code
+            })
+
+    </script>
+</body>
+
+</html>
